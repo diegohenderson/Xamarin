@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace Shop.UIClassic.IOS
+namespace Shop.UIClassic.iOS
 {
     public class Application
     {
