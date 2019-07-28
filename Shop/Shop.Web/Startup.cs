@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+namespace Shop.Web
+{
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,11 +14,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Shop.Web.Data;
-using Shop.Web.Data.Entities;
-
-namespace Shop.Web
-{
+using Data;
+using Data.Entities;
+using Helpers;
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -45,7 +46,9 @@ namespace Shop.Web
                 cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddTransient<SeedDb>();
-            services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
+            services.AddScoped<IUserHelper,UserHelper>();
 
 
             services.Configure<CookiePolicyOptions>(options =>
